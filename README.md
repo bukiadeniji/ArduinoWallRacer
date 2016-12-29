@@ -16,4 +16,4 @@ Code Inspired by - http://www.instructables.com/id/Wall-Following-Robot-Car/
 - Nicholas Finch - Wall following Robot Car, April 16, 2014
 
 ## Installation ##
-Download the Tracked_OAR.ino sketch file and launch with your Arduino Software (IDE).
+Download the Autonomous_Wall_Racer.ino sketch file and launch with your Arduino Software (IDE).
