@@ -26,7 +26,14 @@ const int motor_steerA = 4; //Steering Motor Pins
 const int motor_steerB = 2; //Steering Motor Pins
 const int motor_driveA = 7; //Drive Motor Pins
 const int motor_driveB = 8; //Drive Motor Pins
+const int motor_drive_speed = 3; // PWM output for speed control
 //CAUTION: if the car's wheels are driving or turning in the opposite directions expected, simply edit and reverse these pins as needed
+
+//motor_drive_speed - Drive motor speed controlled by PWM 
+int M_SPD_HIGH = 200;            // Motor speed: (255 MAX)
+int M_SPD_MED = 150;            // Motor speed: (255 MAX)
+int M_SPD_LOW = 100;            // Motor speed: (255 MAX)
+
 
 //Initialize front and wall distances
 int rangeFront = 0;
@@ -41,6 +48,8 @@ void setup() {
   pinMode(motor_steerB, OUTPUT);
   pinMode(motor_driveA, OUTPUT);
   pinMode(motor_driveB, OUTPUT);
+  
+  pinMode(motor_drive_speed, OUTPUT);
     
   //set-up the HC-SR04 Ultrasonic sensors
   pinMode(outputPinFront, OUTPUT);
@@ -85,21 +94,23 @@ Main:
 //   delay(500);
 
 //NOTE: Uncomment the debug codes below for troubleshooting
- if (rangeFront < tooCloseFront){
+ if (rangeFront <= tooCloseFront){
     drive_backward();
-//  Serial.print(" Drive Back");
-    turn_right();
-//  Serial.print(" Right Turn");
-//  Serial.println();
-    delay(2000);
+    if (rangeWall >= tooCloseWall){  // Ony reverse and turn right if there is enough space between car and wall
+      //  Serial.print(" Drive Back");
+      turn_right();
+      //  Serial.print(" Right Turn");
+      //  Serial.println();
+    }
+    delay(400);
 //  Now go forward and turn left    
-    drive_forward();
-    turn_left();
-    delay(1000);
+//    drive_forward();
+//    turn_left();
+//    delay(1000);
     goto Main;    
   }//endif  
   
-  if(rangeWall > tooCloseWall && rangeWall < tooFarWall){
+  if(rangeWall >= tooCloseWall && rangeWall <= tooFarWall){
     drive_forward();
     no_turn();
 //  Serial.print(" Drive Forward");
@@ -107,7 +118,7 @@ Main:
     goto Main;
   }//endeif  
   
-  if (rangeWall < CloseWall){
+  if (rangeWall <= CloseWall){
     turn_left();
 //  Serial.print(" Turn Left");
     drive_forward();
@@ -116,7 +127,7 @@ Main:
     goto Main;
   }//endif 
   
-  if (rangeWall < tooCloseWall){
+  if (rangeWall <= tooCloseWall){
     motor_stop();
     turn_left();
 //  Serial.print(" Hard Turn Left");
@@ -126,7 +137,7 @@ Main:
     goto Main;
   }//endif 
   
-  if (rangeWall > tooFarWall){
+  if (rangeWall >= tooFarWall){
     turn_right();     // If car is going too far away from right wall, out of the range configured above, turn right towards the wall
 //  Serial.print(" Turn Right");
     drive_forward();
@@ -142,6 +153,7 @@ Main:
 void no_turn(){
   digitalWrite(motor_steerA,LOW);
   digitalWrite(motor_steerB,LOW);
+
 }
 void motor_stop(){
   digitalWrite(motor_driveA, LOW); 
@@ -152,12 +164,14 @@ void motor_stop(){
 
 void drive_forward(){
   digitalWrite(motor_driveA, HIGH); 
-  digitalWrite(motor_driveB, LOW); 
+  digitalWrite(motor_driveB, LOW);
+  analogWrite(motor_drive_speed,M_SPD_MED); 
 }
 
 void drive_backward(){
   digitalWrite(motor_driveA, LOW); 
   digitalWrite(motor_driveB, HIGH); 
+  analogWrite(motor_drive_speed,M_SPD_MED); 
 }
 
 void turn_left(){
