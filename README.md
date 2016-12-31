@@ -7,7 +7,7 @@ The toy RC vehicle is hacked and fitted with an Arduino Uno Microcontroller, L29
 and two distance sensors, one Wall Facing, and other Forward Facing.
 
 ## Credits ##
-Author: Buki Adeniji, buki . adeniji @ yahoo . com
+Author: Buki Adeniji, buki @ nextbestinc . com
 Date completed: December 26th, 2016
 
 Project Inspired by - http://letsmakerobots.com/node/40752

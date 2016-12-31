@@ -1,5 +1,5 @@
 // Autonomous Wall Racer
-// Author: Buki Adeniji, buki . adeniji @ yahoo . com
+// Author: Buki Adeniji, buki @ nextbestinc . com
 // Date completed: December 26th, 2016
 
 // INSPIRATION:
