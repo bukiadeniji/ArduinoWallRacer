@@ -9,7 +9,6 @@ and two distance sensors, one Wall Facing, and other Forward Facing.
 ## Demo Video ##
 https://www.youtube.com/watch?v=bS8xFYdZxkI
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bS8xFYdZxkI" frameborder="0" allowfullscreen></iframe>
 
 ## Credits ##
 Author: Buki Adeniji, buki @ nextbestinc . com
