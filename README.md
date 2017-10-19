@@ -6,6 +6,9 @@ This project transforms a basic RC toy car into a Self-driving, autonomous wall-
 The toy RC vehicle is hacked and fitted with an Arduino Uno Microcontroller, L298N Dual H-Bridge Motor Controller 
 and two distance sensors, one Wall Facing, and other Forward Facing.
 
+## Demo Video ##
+https://www.youtube.com/watch?v=bS8xFYdZxkI
+
 ## Credits ##
 Author: Buki Adeniji, buki @ nextbestinc . com
 Date completed: December 26th, 2016
